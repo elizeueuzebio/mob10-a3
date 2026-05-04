@@ -1,0 +1,781 @@
+{
+  "schema": "openai.presentation.layout/v4",
+  "unit": "px",
+  "slide": {
+    "aid": "sl/pg3ex0nu",
+    "id": "pg3ex0nu",
+    "slide": 3,
+    "layoutId": "/ppt/slideLayouts/slideLayout2.xml",
+    "layoutName": "Title Slide",
+    "layoutType": "title",
+    "masterLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+    "masterLayoutName": "Master",
+    "backgroundColor": "#F6F1E8",
+    "frame": {
+      "left": 0,
+      "top": 0,
+      "width": 1920,
+      "height": 1080
+    }
+  },
+  "theme": {
+    "colorSchemeName": "ChatGPT",
+    "colors": {
+      "accent1": "#156082",
+      "accent2": "#E97132",
+      "accent3": "#196B24",
+      "accent4": "#0F9ED5",
+      "accent5": "#A02B93",
+      "accent6": "#4EA72E",
+      "dk1": "#000000",
+      "lt1": "#FFFFFF",
+      "dk2": "#0E2841",
+      "lt2": "#E8E8E8",
+      "hlink": "#467886",
+      "folHlink": "#96607D"
+    },
+    "typefaces": [
+      "+mn-lt"
+    ]
+  },
+  "inheritedLayers": [
+    {
+      "scope": "layout",
+      "id": "/ppt/slideLayouts/slideLayout2.xml",
+      "name": "Title Slide",
+      "type": "title",
+      "parentLayoutId": "/ppt/slideMasters/slideMaster1.xml",
+      "elements": []
+    },
+    {
+      "scope": "master",
+      "id": "/ppt/slideMasters/slideMaster1.xml",
+      "name": "Master",
+      "type": "master",
+      "elements": []
+    }
+  ],
+  "elements": [
+    {
+      "order": 1,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yxobm58z",
+      "id": "1",
+      "bbox": [
+        96,
+        76,
+        1728,
+        22
+      ],
+      "geometry": "rect",
+      "text": "Contexto do projeto",
+      "textPreview": "Contexto do projeto",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Contexto do projeto"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Contexto do projeto",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Contexto do projeto",
+              "fontSize": 18,
+              "color": "#1E6D66",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/5o7qpg3e",
+      "id": "2",
+      "bbox": [
+        96,
+        112,
+        1728,
+        78
+      ],
+      "geometry": "rect",
+      "text": "Problema e proposta de solução",
+      "textPreview": "Problema e proposta de solução",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Problema e proposta de solução"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Problema e proposta de solução",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Problema e proposta de solução",
+              "fontSize": 64,
+              "color": "#162338",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/g3ex0nux",
+      "id": "3",
+      "bbox": [
+        96,
+        216,
+        804,
+        116
+      ],
+      "geometry": "rect",
+      "text": "Transporte acessível não pode depender de improviso.",
+      "textPreview": "Transporte acessível não pode depender de improviso.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Transporte acessível não pode depender"
+          },
+          {
+            "index": 2,
+            "text": "de improviso."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Transporte acessível não pode depender de improviso.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Transporte acessível não pode depender de improviso.",
+              "fontSize": 48,
+              "color": "#162338",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/r65wjudg",
+      "id": "4",
+      "bbox": [
+        96,
+        356,
+        770,
+        120
+      ],
+      "geometry": "rect",
+      "text": "O Mob10 foi pensado como um aplicativo semelhante ao Uber, porém totalmente voltado para pessoas com mobilidade reduzida. A ideia central é conectar passageiros a motoristas e veículos compatíveis com suas necessidades.",
+      "textPreview": "O Mob10 foi pensado como um aplicativo semelhante ao Uber, porém totalmente voltado para pessoas com mobilidade reduzida. A ideia central...",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 4,
+        "lines": [
+          {
+            "index": 1,
+            "text": "O Mob10 foi pensado como um aplicativo semelhante ao Uber, porém"
+          },
+          {
+            "index": 2,
+            "text": "totalmente voltado para pessoas com mobilidade reduzida. A ideia central é"
+          },
+          {
+            "index": 3,
+            "text": "conectar passageiros a motoristas e veículos compatíveis com suas"
+          },
+          {
+            "index": 4,
+            "text": "necessidades."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "O Mob10 foi pensado como um aplicativo semelhante ao Uber, porém totalmente voltado para pessoas com mobilidade reduzida. A ideia central é conectar passageiros a motoristas e veículos compatíveis com suas necessidades.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "O Mob10 foi pensado como um aplicativo semelhante ao Uber, porém totalmente voltado para pessoas com mobilidade reduzida. A ideia central é conectar passageiros a motoristas e veículos compatíveis com suas necessidades.",
+              "fontSize": 25,
+              "color": "#5E697A"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ylc7u54z",
+      "id": "5",
+      "bbox": [
+        96,
+        499.6,
+        124.19,
+        41.6
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#DDF2ED"
+    },
+    {
+      "order": 6,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/9cvixcze",
+      "id": "6",
+      "bbox": [
+        114,
+        510,
+        88,
+        20
+      ],
+      "geometry": "rect",
+      "text": "Cadeirantes",
+      "textPreview": "Cadeirantes",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Cadeirantes"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Cadeirantes",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Cadeirantes",
+              "fontSize": 18,
+              "color": "#1E6D66",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 7,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/gr2p8nqx",
+      "id": "7",
+      "bbox": [
+        232.19,
+        499.6,
+        84.18,
+        41.6
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#DDF2ED"
+    },
+    {
+      "order": 8,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/rytsvu9k",
+      "id": "8",
+      "bbox": [
+        250,
+        510,
+        48,
+        20
+      ],
+      "geometry": "rect",
+      "text": "Idosos",
+      "textPreview": "Idosos",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Idosos"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Idosos",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Idosos",
+              "fontSize": 18,
+              "color": "#1E6D66",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 9,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/yd0z6103",
+      "id": "9",
+      "bbox": [
+        328.37,
+        499.6,
+        189.87,
+        41.6
+      ],
+      "geometry": "roundRect",
+      "fillColor": "#DDF2ED"
+    },
+    {
+      "order": 10,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/wb2hwfyx",
+      "id": "10",
+      "bbox": [
+        348,
+        510,
+        152,
+        20
+      ],
+      "geometry": "rect",
+      "text": "Recuperação médica",
+      "textPreview": "Recuperação médica",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Recuperação médica"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Recuperação médica",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Recuperação médica",
+              "fontSize": 18,
+              "color": "#1E6D66",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 11,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lwval87e",
+      "id": "11",
+      "bbox": [
+        1056,
+        216,
+        768,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Quem é impactado positivamente",
+      "textPreview": "Quem é impactado positivamente",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Quem é impactado positivamente"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Quem é impactado positivamente",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Quem é impactado positivamente",
+              "fontSize": 22,
+              "color": "#1E6D66",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 12,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/e9cvixcz",
+      "id": "12",
+      "bbox": [
+        1056,
+        268,
+        14,
+        14
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#2D9C91"
+    },
+    {
+      "order": 13,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3q5o7qpg",
+      "id": "13",
+      "bbox": [
+        1084,
+        262,
+        740,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Passageiros com mais autonomia e segurança.",
+      "textPreview": "Passageiros com mais autonomia e segurança.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Passageiros com mais autonomia e segurança."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Passageiros com mais autonomia e segurança.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Passageiros com mais autonomia e segurança.",
+              "fontSize": 24,
+              "color": "#162338"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 14,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/w3m94fu1",
+      "id": "14",
+      "bbox": [
+        1056,
+        314,
+        14,
+        14
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#2D9C91"
+    },
+    {
+      "order": 15,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/loj2t83i",
+      "id": "15",
+      "bbox": [
+        1084,
+        308,
+        740,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Motoristas parceiros com nova fonte de renda.",
+      "textPreview": "Motoristas parceiros com nova fonte de renda.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Motoristas parceiros com nova fonte de renda."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Motoristas parceiros com nova fonte de renda.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Motoristas parceiros com nova fonte de renda.",
+              "fontSize": 24,
+              "color": "#162338"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 16,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/ex0nuxc3",
+      "id": "16",
+      "bbox": [
+        1056,
+        362,
+        14,
+        14
+      ],
+      "geometry": "ellipse",
+      "fillColor": "#2D9C91"
+    },
+    {
+      "order": 17,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/3itgfmlk",
+      "id": "17",
+      "bbox": [
+        1084,
+        354,
+        740,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Sociedade com maior inclusão social.",
+      "textPreview": "Sociedade com maior inclusão social.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Sociedade com maior inclusão social."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Sociedade com maior inclusão social.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Sociedade com maior inclusão social.",
+              "fontSize": 24,
+              "color": "#162338"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 18,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/szqtcj6t",
+      "id": "18",
+      "bbox": [
+        1056,
+        402,
+        320,
+        2
+      ],
+      "geometry": "rect",
+      "fillColor": "#D8D0C4",
+      "lineColor": "#D8D0C4",
+      "lineWidth": 0
+    },
+    {
+      "order": 19,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lkjm1cfa",
+      "id": "19",
+      "bbox": [
+        1056,
+        422,
+        768,
+        28
+      ],
+      "geometry": "rect",
+      "text": "Valor da proposta",
+      "textPreview": "Valor da proposta",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 1,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Valor da proposta"
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Valor da proposta",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Valor da proposta",
+              "fontSize": 22,
+              "color": "#1E6D66",
+              "bold": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "order": 20,
+      "kind": "shape",
+      "scope": "slide",
+      "aid": "sh/lc7u54zi",
+      "id": "20",
+      "bbox": [
+        1056,
+        466,
+        768,
+        54
+      ],
+      "geometry": "rect",
+      "text": "Cadastro de usuários, registro de veículos adaptados, solicitação de corridas, pagamento e avaliação em uma única base orientada a objetos.",
+      "textPreview": "Cadastro de usuários, registro de veículos adaptados, solicitação de corridas, pagamento e avaliação em uma única base orientada a objetos.",
+      "resolvedFontSize": 24,
+      "resolvedTextStyle": {
+        "fontSize": 24,
+        "typeface": "+mn-lt",
+        "alignment": "left"
+      },
+      "textLayout": {
+        "lineCount": 2,
+        "lines": [
+          {
+            "index": 1,
+            "text": "Cadastro de usuários, registro de veículos adaptados, solicitação de corridas,"
+          },
+          {
+            "index": 2,
+            "text": "pagamento e avaliação em uma única base orientada a objetos."
+          }
+        ]
+      },
+      "paragraphs": [
+        {
+          "index": 1,
+          "text": "Cadastro de usuários, registro de veículos adaptados, solicitação de corridas, pagamento e avaliação em uma única base orientada a objetos.",
+          "runs": [
+            {
+              "index": 1,
+              "text": "Cadastro de usuários, registro de veículos adaptados, solicitação de corridas, pagamento e avaliação em uma única base orientada a objetos.",
+              "fontSize": 22,
+              "color": "#5E697A"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "composeRuns": []
+}

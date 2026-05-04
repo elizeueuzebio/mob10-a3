@@ -1,0 +1,14 @@
+{
+  "workspace": "C:\\Users\\elize\\Documents\\Mob10\\Mob10\\tmp\\presentations\\mob10-checkpoint-2",
+  "pptx": "C:\\Users\\elize\\Documents\\Mob10\\Mob10\\tmp\\presentations\\mob10-checkpoint-2\\output\\output.pptx",
+  "checks": {
+    "output_hygiene": {
+      "output_dir": "C:\\Users\\elize\\Documents\\Mob10\\Mob10\\tmp\\presentations\\mob10-checkpoint-2\\output",
+      "unexpected_files": []
+    }
+  },
+  "failures": [
+    "PPTX package inspection failed: unzip -Z1 C:\\Users\\elize\\Documents\\Mob10\\Mob10\\tmp\\presentations\\mob10-checkpoint-2\\output\\output.pptx failed"
+  ],
+  "warnings": []
+}
