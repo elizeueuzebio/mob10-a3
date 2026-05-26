@@ -10,6 +10,11 @@ public class Motorista extends Usuario {
     private ArrayList<Corrida> listaCorridas;
 
     public Motorista(int id, String nome, String telefone, String email, String endereco, Regiao regiao,
+            String cnh, Veiculo veiculo) {
+        this(id, nome, telefone, email, endereco, regiao, cnh, veiculo, true);
+    }
+
+    public Motorista(int id, String nome, String telefone, String email, String endereco, Regiao regiao,
             String cnh, Veiculo veiculo, boolean disponibilidade) {
         super(id, nome, telefone, email, endereco, regiao);
         this.cnh = cnh;
@@ -20,10 +25,11 @@ public class Motorista extends Usuario {
     }
 
     public boolean aceitarCorrida(Corrida corrida) {
-        if (!disponibilidade || corrida == null) {
+        if (!disponibilidade || corrida == null || veiculo == null) {
             return false;
         }
 
+        // O motorista assume a corrida e passa a ficar indisponivel ate a finalizacao.
         corrida.setMotorista(this);
         corrida.setStatus("ACEITA");
         if (!listaCorridas.contains(corrida)) {
@@ -42,6 +48,17 @@ public class Motorista extends Usuario {
 
     public String visualizarCorridas() {
         return listaCorridas.toString();
+    }
+
+    @Override
+    public String getTipoUsuario() {
+        return "Motorista";
+    }
+
+    @Override
+    public String exibirPerfil() {
+        String veiculoDescricao = veiculo != null ? veiculo.exibirDetalhes() : "sem veiculo";
+        return super.exibirPerfil() + " | Veiculo: " + veiculoDescricao;
     }
 
     public String getCnh() {
@@ -90,7 +107,7 @@ public class Motorista extends Usuario {
                 + "id=" + getId()
                 + ", nome='" + getNome() + '\''
                 + ", cnh='" + cnh + '\''
-                + ", veiculo=" + (veiculo != null ? veiculo.getModelo() + "/" + veiculo.getPlaca() : "sem veiculo")
+                + ", veiculo=" + (veiculo != null ? veiculo.exibirDetalhes() : "sem veiculo")
                 + ", disponibilidade=" + disponibilidade
                 + ", avaliacaoMedia=" + avaliacaoMedia
                 + ", corridas=" + listaCorridas.size()

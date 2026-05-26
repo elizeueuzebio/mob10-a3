@@ -1,6 +1,6 @@
 package model;
 
-public class Usuario {
+public abstract class Usuario {
     private int id;
     private String nome;
     private String telefone;
@@ -17,8 +17,10 @@ public class Usuario {
         this.regiao = regiao;
     }
 
+    public abstract String getTipoUsuario();
+
     public String exibirPerfil() {
-        return nome + " | " + email + " | " + telefone;
+        return getTipoUsuario() + " #" + id + " - " + nome + " | " + email + " | " + telefone;
     }
 
     public int getId() {
@@ -71,7 +73,7 @@ public class Usuario {
 
     @Override
     public String toString() {
-        return "Usuario{"
+        return getTipoUsuario() + "{"
                 + "id=" + id
                 + ", nome='" + nome + '\''
                 + ", telefone='" + telefone + '\''

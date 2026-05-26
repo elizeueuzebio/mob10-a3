@@ -6,6 +6,10 @@ public class Avaliacao {
     private int nota;
     private String comentario;
 
+    public Avaliacao(int id, Corrida corrida, int nota) {
+        this(id, corrida, nota, "");
+    }
+
     public Avaliacao(int id, Corrida corrida, int nota, String comentario) {
         this.id = id;
         this.corrida = corrida;

@@ -3,6 +3,10 @@ package model;
 public class Regiao {
     private String nome;
 
+    public Regiao() {
+        this("Nao informada");
+    }
+
     public Regiao(String nome) {
         this.nome = nome;
     }

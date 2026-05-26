@@ -7,6 +7,10 @@ public class Pagamento {
     private String metodoPagamento;
     private String status;
 
+    public Pagamento(int id, Corrida corrida, double valor, String metodoPagamento) {
+        this(id, corrida, valor, metodoPagamento, "PENDENTE");
+    }
+
     public Pagamento(int id, Corrida corrida, double valor, String metodoPagamento, String status) {
         this.id = id;
         this.corrida = corrida;

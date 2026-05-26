@@ -11,6 +11,10 @@ public class Corrida {
     private String status;
     private double valor;
 
+    public Corrida(int id, Passageiro passageiro, String origem, String destino, String data, String horario) {
+        this(id, passageiro, null, origem, destino, data, horario, "SOLICITADA", 0.0);
+    }
+
     public Corrida(int id, Passageiro passageiro, Motorista motorista, String origem, String destino,
             String data, String horario, String status, double valor) {
         this.id = id;
@@ -25,15 +29,16 @@ public class Corrida {
     }
 
     public double calcularValor() {
-        double tarifaBase = 18.0;
-        double adicionalAdaptado = 7.0;
+        return calcularValor(18.0);
+    }
 
-        if (motorista != null && motorista.getVeiculo() != null && motorista.getVeiculo().isAdaptado()) {
-            valor = tarifaBase + adicionalAdaptado;
+    public double calcularValor(double tarifaBase) {
+        // O calculo delega para o tipo concreto do veiculo, evidenciando polimorfismo.
+        if (motorista != null && motorista.getVeiculo() != null) {
+            valor = motorista.getVeiculo().calcularTarifa(tarifaBase);
         } else {
             valor = tarifaBase;
         }
-
         return valor;
     }
 
@@ -46,6 +51,17 @@ public class Corrida {
         if (motorista != null) {
             motorista.setDisponibilidade(true);
         }
+    }
+
+    public void cancelarCorrida() {
+        status = "CANCELADA";
+        if (motorista != null) {
+            motorista.setDisponibilidade(true);
+        }
+    }
+
+    public boolean podeReceberAvaliacao() {
+        return "FINALIZADA".equalsIgnoreCase(status);
     }
 
     public int getId() {

@@ -8,6 +8,11 @@ public class Passageiro extends Usuario {
     private ArrayList<Corrida> listaCorridas;
 
     public Passageiro(int id, String nome, String telefone, String email, String endereco, Regiao regiao,
+            String necessidadeEspecial) {
+        this(id, nome, telefone, email, endereco, regiao, necessidadeEspecial, new ArrayList<String>());
+    }
+
+    public Passageiro(int id, String nome, String telefone, String email, String endereco, Regiao regiao,
             String necessidadeEspecial, ArrayList<String> formasPagamento) {
         super(id, nome, telefone, email, endereco, regiao);
         this.necessidadeEspecial = necessidadeEspecial;
@@ -32,6 +37,23 @@ public class Passageiro extends Usuario {
 
     public Avaliacao avaliarCorrida(int id, Corrida corrida, int nota, String comentario) {
         return new Avaliacao(id, corrida, nota, comentario);
+    }
+
+    public Avaliacao avaliarCorrida(int id, Corrida corrida, int nota) {
+        return new Avaliacao(id, corrida, nota);
+    }
+
+    @Override
+    public String getTipoUsuario() {
+        return "Passageiro";
+    }
+
+    @Override
+    public String exibirPerfil() {
+        String necessidade = (necessidadeEspecial == null || necessidadeEspecial.trim().isEmpty())
+                ? "Nenhuma"
+                : necessidadeEspecial;
+        return super.exibirPerfil() + " | Necessidade: " + necessidade;
     }
 
     public String getNecessidadeEspecial() {

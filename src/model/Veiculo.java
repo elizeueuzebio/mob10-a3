@@ -7,6 +7,10 @@ public class Veiculo {
     private boolean adaptado;
     private int capacidade;
 
+    public Veiculo(String modelo, String placa, String tipo, int capacidade) {
+        this(modelo, placa, tipo, false, capacidade);
+    }
+
     public Veiculo(String modelo, String placa, String tipo, boolean adaptado, int capacidade) {
         this.modelo = modelo;
         this.placa = placa;
@@ -16,7 +20,22 @@ public class Veiculo {
     }
 
     public String exibirDetalhes() {
-        return modelo + " - " + placa + " - " + tipo;
+        return tipo + " " + modelo + " (" + placa + ")";
+    }
+
+    public double calcularTarifa(double tarifaBase) {
+        return adaptado ? tarifaBase + 7.0 : tarifaBase;
+    }
+
+    public boolean suportaNecessidadeEspecial(String necessidadeEspecial) {
+        // A regra base considera o veiculo adaptado como compativel para necessidades especiais.
+        return !possuiNecessidadeEspecial(necessidadeEspecial) || adaptado;
+    }
+
+    protected boolean possuiNecessidadeEspecial(String necessidadeEspecial) {
+        return necessidadeEspecial != null
+                && !necessidadeEspecial.trim().isEmpty()
+                && !"nenhuma".equalsIgnoreCase(necessidadeEspecial);
     }
 
     public String getModelo() {
