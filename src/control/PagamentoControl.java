@@ -1,23 +1,25 @@
-package service;
+package control;
 
 import java.util.ArrayList;
 
+import model.Corrida;
 import model.Pagamento;
 
-public class PagamentoService {
-    private ArrayList<Pagamento> pagamentos;
+public class PagamentoControl {
+    private final ArrayList<Pagamento> pagamentos;
 
-    public PagamentoService() {
+    public PagamentoControl() {
         this.pagamentos = new ArrayList<>();
     }
 
     public boolean processarPagamento(Pagamento pagamento) {
-        if (pagamento == null || pagamento.getCorrida() == null || buscarPorId(pagamento.getId()) != null
+        if (pagamento == null || pagamento.getCorrida() == null || pagamento.getValor() <= 0
+                || buscarPorId(pagamento.getId()) != null
                 || buscarPorCorridaId(pagamento.getCorrida().getId()) != null) {
             return false;
         }
 
-        if (!"FINALIZADA".equalsIgnoreCase(pagamento.getCorrida().getStatus())) {
+        if (!pagamento.getCorrida().estaComStatus(Corrida.STATUS_FINALIZADA)) {
             return false;
         }
 
@@ -44,6 +46,10 @@ public class PagamentoService {
     public boolean atualizarMetodoPagamento(int id, String metodoPagamento) {
         Pagamento pagamento = buscarPorId(id);
         if (pagamento == null) {
+            return false;
+        }
+
+        if (textoVazio(metodoPagamento)) {
             return false;
         }
 
@@ -81,9 +87,13 @@ public class PagamentoService {
         return new ArrayList<>(pagamentos);
     }
 
+    private boolean textoVazio(String texto) {
+        return texto == null || texto.trim().isEmpty();
+    }
+
     @Override
     public String toString() {
-        return "PagamentoService{"
+        return "PagamentoControl{"
                 + "pagamentos=" + pagamentos
                 + '}';
     }

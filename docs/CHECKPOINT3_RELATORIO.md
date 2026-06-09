@@ -4,7 +4,7 @@ Data de referencia: 26/05/2026
 
 ## 1. Visao geral
 
-O projeto Mob10 evolui a base do checkpoint 2 para um sistema de console com foco em mobilidade urbana acessivel. Nesta etapa, o objetivo principal foi consolidar os requisitos de Programacao Orientada a Objetos, adicionar um menu interativo funcional, validar entradas do usuario e garantir operacoes CRUD nas listas mantidas pelos services.
+O projeto Mob10 evolui a base do checkpoint 2 para um sistema de console com foco em mobilidade urbana acessivel. Nesta etapa, o objetivo principal foi consolidar os requisitos de Programacao Orientada a Objetos, adicionar um menu interativo funcional, validar entradas do usuario e garantir operacoes CRUD nas listas mantidas pelos controles.
 
 ## 2. Requisitos atendidos
 
@@ -13,7 +13,7 @@ O projeto Mob10 evolui a base do checkpoint 2 para um sistema de console com foc
 - sobrecarga de construtores e metodos
 - menu interativo funcional em `view/MenuAplicacao.java`
 - validacao de entrada para campos sensiveis
-- CRUD com `ArrayList` nos services
+- CRUD com `ArrayList` nos controles
 - comentarios no codigo explicando a logica central
 - repositorio organizado no GitHub
 
@@ -91,7 +91,7 @@ Tambem existem validacoes de negocio, como:
 Sim. Foram inseridos comentarios objetivos em pontos centrais:
 
 - protecao contra IDs duplicados no cadastro
-- controle de consistencia das listas nos services
+- controle de consistencia das listas nos controles
 - uso do polimorfismo no menu ao listar usuarios
 
 Os comentarios foram mantidos curtos para nao poluir o codigo, mas explicam a intencao das partes mais importantes da modelagem.
@@ -152,7 +152,7 @@ A estrutura possui classes, encapsulamento, heranca, polimorfismo e listas de re
 
 ### Implementacao POO
 
-Os comportamentos foram distribuidos entre model, service e view, evitando concentrar toda a logica na classe principal.
+Os comportamentos foram distribuidos entre model, control e view, evitando concentrar toda a logica na classe principal.
 
 ### Funcionalidade
 

@@ -1,6 +1,12 @@
 package model;
 
 public class Corrida {
+    public static final String STATUS_SOLICITADA = "SOLICITADA";
+    public static final String STATUS_ACEITA = "ACEITA";
+    public static final String STATUS_EM_ANDAMENTO = "EM_ANDAMENTO";
+    public static final String STATUS_FINALIZADA = "FINALIZADA";
+    public static final String STATUS_CANCELADA = "CANCELADA";
+
     private int id;
     private Passageiro passageiro;
     private Motorista motorista;
@@ -12,7 +18,7 @@ public class Corrida {
     private double valor;
 
     public Corrida(int id, Passageiro passageiro, String origem, String destino, String data, String horario) {
-        this(id, passageiro, null, origem, destino, data, horario, "SOLICITADA", 0.0);
+        this(id, passageiro, null, origem, destino, data, horario, STATUS_SOLICITADA, 0.0);
     }
 
     public Corrida(int id, Passageiro passageiro, Motorista motorista, String origem, String destino,
@@ -43,25 +49,41 @@ public class Corrida {
     }
 
     public void iniciarCorrida() {
-        status = "EM_ANDAMENTO";
+        status = STATUS_EM_ANDAMENTO;
     }
 
     public void finalizarCorrida() {
-        status = "FINALIZADA";
+        status = STATUS_FINALIZADA;
         if (motorista != null) {
             motorista.setDisponibilidade(true);
         }
     }
 
     public void cancelarCorrida() {
-        status = "CANCELADA";
+        status = STATUS_CANCELADA;
         if (motorista != null) {
             motorista.setDisponibilidade(true);
         }
     }
 
     public boolean podeReceberAvaliacao() {
-        return "FINALIZADA".equalsIgnoreCase(status);
+        return estaComStatus(STATUS_FINALIZADA);
+    }
+
+    public boolean podeAtualizarRota() {
+        return !estaComStatus(STATUS_FINALIZADA) && !estaComStatus(STATUS_CANCELADA);
+    }
+
+    public boolean podeFinalizar() {
+        return estaComStatus(STATUS_EM_ANDAMENTO);
+    }
+
+    public boolean podeCancelar() {
+        return !estaComStatus(STATUS_FINALIZADA) && !estaComStatus(STATUS_CANCELADA);
+    }
+
+    public boolean estaComStatus(String statusEsperado) {
+        return statusEsperado != null && statusEsperado.equalsIgnoreCase(status);
     }
 
     public int getId() {

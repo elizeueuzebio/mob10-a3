@@ -1,4 +1,29 @@
+# Java build output
 bin/
+out/
+build/
+target/
 *.class
+*.jar
+*.war
+*.ear
+
+# IDE/editor local files
 .vscode/
+.idea/
+*.iml
+.classpath
+.project
+.settings/
+
+# OS and temporary files
 tmp/
+temp/
+*.tmp
+*.log
+.DS_Store
+Thumbs.db
+
+# JVM crash/replay files
+hs_err_pid*
+replay_pid*

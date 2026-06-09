@@ -1,6 +1,12 @@
 package model;
 
 public class Pagamento {
+    public static final String STATUS_PENDENTE = "PENDENTE";
+    public static final String STATUS_PROCESSADO = "PROCESSADO";
+    public static final String METODO_PIX = "Pix";
+    public static final String METODO_CARTAO = "Cartao";
+    public static final String METODO_DINHEIRO = "Dinheiro";
+
     private int id;
     private Corrida corrida;
     private double valor;
@@ -8,7 +14,7 @@ public class Pagamento {
     private String status;
 
     public Pagamento(int id, Corrida corrida, double valor, String metodoPagamento) {
-        this(id, corrida, valor, metodoPagamento, "PENDENTE");
+        this(id, corrida, valor, metodoPagamento, STATUS_PENDENTE);
     }
 
     public Pagamento(int id, Corrida corrida, double valor, String metodoPagamento, String status) {
@@ -20,7 +26,7 @@ public class Pagamento {
     }
 
     public void processarPagamento() {
-        status = "PROCESSADO";
+        status = STATUS_PROCESSADO;
     }
 
     public int getId() {

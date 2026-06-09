@@ -1,4 +1,4 @@
-package service;
+package control;
 
 import java.util.ArrayList;
 
@@ -7,10 +7,10 @@ import model.Motorista;
 import model.Passageiro;
 import model.Veiculo;
 
-public class CorridaService {
-    private ArrayList<Corrida> corridas;
+public class CorridaControl {
+    private final ArrayList<Corrida> corridas;
 
-    public CorridaService() {
+    public CorridaControl() {
         this.corridas = new ArrayList<>();
     }
 
@@ -20,7 +20,7 @@ public class CorridaService {
             return false;
         }
 
-        corrida.setStatus("SOLICITADA");
+        corrida.setStatus(Corrida.STATUS_SOLICITADA);
         corridas.add(corrida);
 
         Passageiro passageiro = corrida.getPassageiro();
@@ -55,7 +55,7 @@ public class CorridaService {
 
     public Motorista despacharCorrida(int id, ArrayList<Motorista> motoristas) {
         Corrida corrida = buscarPorId(id);
-        if (corrida == null || !"SOLICITADA".equalsIgnoreCase(corrida.getStatus())) {
+        if (corrida == null || !corrida.estaComStatus(Corrida.STATUS_SOLICITADA)) {
             return null;
         }
 
@@ -83,8 +83,8 @@ public class CorridaService {
 
     public boolean atualizarRota(int id, String origem, String destino, String data, String horario) {
         Corrida corrida = buscarPorId(id);
-        if (corrida == null || "FINALIZADA".equalsIgnoreCase(corrida.getStatus())
-                || "CANCELADA".equalsIgnoreCase(corrida.getStatus())) {
+        if (corrida == null || !corrida.podeAtualizarRota()
+                || textoVazio(origem) || textoVazio(destino) || textoVazio(data) || textoVazio(horario)) {
             return false;
         }
 
@@ -101,7 +101,7 @@ public class CorridaService {
     }
 
     public boolean finalizar(Corrida corrida) {
-        if (corrida == null || "CANCELADA".equalsIgnoreCase(corrida.getStatus())) {
+        if (corrida == null || !corrida.podeFinalizar()) {
             return false;
         }
         corrida.finalizarCorrida();
@@ -110,7 +110,7 @@ public class CorridaService {
 
     public boolean cancelar(int id) {
         Corrida corrida = buscarPorId(id);
-        if (corrida == null || "FINALIZADA".equalsIgnoreCase(corrida.getStatus())) {
+        if (corrida == null || !corrida.podeCancelar()) {
             return false;
         }
 
@@ -154,9 +154,13 @@ public class CorridaService {
         return new ArrayList<>(corridas);
     }
 
+    private boolean textoVazio(String texto) {
+        return texto == null || texto.trim().isEmpty();
+    }
+
     @Override
     public String toString() {
-        return "CorridaService{"
+        return "CorridaControl{"
                 + "corridas=" + corridas
                 + '}';
     }

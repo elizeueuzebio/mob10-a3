@@ -1,4 +1,4 @@
-package service;
+package control;
 
 import java.util.ArrayList;
 
@@ -6,10 +6,10 @@ import model.Avaliacao;
 import model.Corrida;
 import model.Motorista;
 
-public class AvaliacaoService {
-    private ArrayList<Avaliacao> avaliacoes;
+public class AvaliacaoControl {
+    private final ArrayList<Avaliacao> avaliacoes;
 
-    public AvaliacaoService() {
+    public AvaliacaoControl() {
         this.avaliacoes = new ArrayList<>();
     }
 
@@ -132,7 +132,7 @@ public class AvaliacaoService {
 
     @Override
     public String toString() {
-        return "AvaliacaoService{"
+        return "AvaliacaoControl{"
                 + "avaliacoes=" + avaliacoes
                 + '}';
     }

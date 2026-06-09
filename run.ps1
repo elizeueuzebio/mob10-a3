@@ -1,0 +1,61 @@
+$ErrorActionPreference = "Stop"
+
+function Get-JdkMajor {
+    param([string]$JdkHome)
+
+    $releaseFile = Join-Path $JdkHome "release"
+    if (Test-Path $releaseFile) {
+        $release = Get-Content $releaseFile -Raw
+        if ($release -match 'JAVA_VERSION="(?:1\.)?(\d+)') {
+            return [int]$Matches[1]
+        }
+    }
+
+    if ($JdkHome -match 'jdk-?(\d+)') {
+        return [int]$Matches[1]
+    }
+
+    return 0
+}
+
+function Resolve-JdkCommand {
+    param([string]$CommandName)
+
+    $homes = @()
+    if ($env:JAVA_HOME) {
+        $homes += $env:JAVA_HOME
+    }
+
+    $javaRoot = "C:\Program Files\Java"
+    if (Test-Path $javaRoot) {
+        $homes += Get-ChildItem -Path $javaRoot -Directory -Filter "jdk*" | ForEach-Object { $_.FullName }
+    }
+
+    $bestHome = $homes |
+        Where-Object { Test-Path (Join-Path $_ "bin\$CommandName") } |
+        Select-Object -Unique |
+        ForEach-Object {
+            [pscustomobject]@{
+                Home = $_
+                Major = Get-JdkMajor $_
+            }
+        } |
+        Sort-Object -Property Major, Home -Descending |
+        Select-Object -First 1
+
+    if ($bestHome) {
+        return Join-Path $bestHome.Home "bin\$CommandName"
+    }
+
+    return (Get-Command $CommandName -ErrorAction Stop).Source
+}
+
+$projectRoot = $PSScriptRoot
+$compileScript = Join-Path $projectRoot "compile.ps1"
+$binDir = Join-Path $projectRoot "bin"
+$java = Resolve-JdkCommand "java.exe"
+
+& $compileScript
+
+Write-Host "Executando com: $java"
+& $java -cp $binDir view.Main

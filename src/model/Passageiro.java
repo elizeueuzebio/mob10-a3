@@ -31,7 +31,7 @@ public class Passageiro extends Usuario {
             return false;
         }
 
-        corrida.setStatus("CANCELADA");
+        corrida.cancelarCorrida();
         return listaCorridas.remove(corrida);
     }
 

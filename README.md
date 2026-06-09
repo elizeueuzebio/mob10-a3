@@ -16,7 +16,7 @@ O Mob10 simula um aplicativo de transporte voltado para passageiros com mobilida
 ## Estrutura do projeto
 
 - `src/model`: classes de dominio e relacionamentos POO
-- `src/service`: regras de negocio, listas `ArrayList` e operacoes CRUD
+- `src/control`: regras de negocio, listas `ArrayList` e operacoes CRUD
 - `src/view`: menu interativo e fluxo de execucao
 - `docs`: material de apoio para a entrega do checkpoint 3
 
@@ -28,7 +28,7 @@ O Mob10 simula um aplicativo de transporte voltado para passageiros com mobilida
 - sobrecarga em construtores e metodos de `Motorista`, `Passageiro`, `Corrida`, `Pagamento` e `Avaliacao`
 - menu interativo funcional por entidade
 - validacao de entrada para ID, email, telefone, CNH, placa, data, horario e nota
-- CRUD com `ArrayList` nos services de usuarios, corridas, pagamentos e avaliacoes
+- CRUD com `ArrayList` nos controles de usuarios, corridas, pagamentos e avaliacoes
 - comentarios curtos explicando a logica central de POO e consistencia das listas
 - codigo versionado no GitHub
 
@@ -48,39 +48,55 @@ O Mob10 simula um aplicativo de transporte voltado para passageiros com mobilida
 - `Avaliacao`
 - `Regiao`
 
-### Service
+### Control
 
-- `UsuarioService`
-- `CorridaService`
-- `PagamentoService`
-- `AvaliacaoService`
+- `UsuarioControl`
+- `CorridaControl`
+- `PagamentoControl`
+- `AvaliacaoControl`
 
 ### View
 
 - `Main`
 - `MenuAplicacao`
 
-## Como executar
+## Como executar com Java recente
 
-O projeto esta compativel com Java 8 ou superior.
+Recomendado: JDK 17 ou superior. O projeto tambem funciona com JDK 21.
+
+No PowerShell, use:
+
+```powershell
+.\run.ps1
+```
+
+Esse script compila e executa usando o JDK mais recente encontrado na maquina. Ele evita o erro de compilar com `javac` novo e executar com um `java` antigo no PATH.
+
+Se a politica de execucao do PowerShell bloquear scripts locais, use:
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\run.ps1
+```
+
+Para compilar e executar manualmente:
 
 ```bash
-javac -d bin src/model/*.java src/service/*.java src/view/*.java
+javac -d bin src/model/*.java src/control/*.java src/view/*.java
 java -cp bin view.Main
 ```
 
-Se estiver compilando com um JDK mais novo e quiser garantir bytecode compativel com Java 8:
-
-```bash
-javac --release 8 -d bin src/model/*.java src/service/*.java src/view/*.java
-java -cp bin view.Main
-```
-
-Se existir mais de uma instalacao do Java no computador, confirme a versao com:
+Se houver mais de uma instalacao do Java no computador, confirme se `javac` e `java` apontam para a mesma versao recente:
 
 ```bash
 javac -version
 java -version
+```
+
+No Windows, tambem vale conferir a ordem do PATH:
+
+```bash
+where javac
+where java
 ```
 
 ## Fluxo sugerido para demonstracao

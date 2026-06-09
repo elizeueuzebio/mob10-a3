@@ -6,8 +6,13 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.function.IntFunction;
 import java.util.regex.Pattern;
 
+import control.AvaliacaoControl;
+import control.CorridaControl;
+import control.PagamentoControl;
+import control.UsuarioControl;
 import model.Avaliacao;
 import model.CarroAdaptado;
 import model.CarroComum;
@@ -19,10 +24,6 @@ import model.Regiao;
 import model.Usuario;
 import model.Van;
 import model.Veiculo;
-import service.AvaliacaoService;
-import service.CorridaService;
-import service.PagamentoService;
-import service.UsuarioService;
 
 public class MenuAplicacao {
     private static final String REPO_GITHUB = "https://github.com/elizeueuzebio/mob10-a3";
@@ -36,17 +37,17 @@ public class MenuAplicacao {
             .withResolverStyle(ResolverStyle.STRICT);
 
     private final Scanner scanner;
-    private final UsuarioService usuarioService;
-    private final CorridaService corridaService;
-    private final PagamentoService pagamentoService;
-    private final AvaliacaoService avaliacaoService;
+    private final UsuarioControl usuarioControl;
+    private final CorridaControl corridaControl;
+    private final PagamentoControl pagamentoControl;
+    private final AvaliacaoControl avaliacaoControl;
 
     public MenuAplicacao() {
         this.scanner = new Scanner(System.in);
-        this.usuarioService = new UsuarioService();
-        this.corridaService = new CorridaService();
-        this.pagamentoService = new PagamentoService();
-        this.avaliacaoService = new AvaliacaoService();
+        this.usuarioControl = new UsuarioControl();
+        this.corridaControl = new CorridaControl();
+        this.pagamentoControl = new PagamentoControl();
+        this.avaliacaoControl = new AvaliacaoControl();
         carregarDadosIniciais();
     }
 
@@ -323,7 +324,7 @@ public class MenuAplicacao {
                 estaVazio(necessidadeEspecial) ? "Nenhuma" : necessidadeEspecial,
                 formasPagamento);
 
-        if (usuarioService.cadastrar(passageiro)) {
+        if (usuarioControl.cadastrar(passageiro)) {
             System.out.println("Passageiro cadastrado com sucesso.");
         } else {
             System.out.println("Nao foi possivel cadastrar o passageiro.");
@@ -332,7 +333,7 @@ public class MenuAplicacao {
 
     private void listarPassageiros() {
         exibirCabecalho("LISTA DE PASSAGEIROS");
-        ArrayList<Passageiro> passageiros = usuarioService.listarPassageiros();
+        ArrayList<Passageiro> passageiros = usuarioControl.listarPassageiros();
         if (passageiros.isEmpty()) {
             System.out.println("Nenhum passageiro cadastrado.");
             return;
@@ -350,7 +351,7 @@ public class MenuAplicacao {
         listarPassageiros();
 
         int id = lerInteiroPositivo("Informe o ID do passageiro: ");
-        Passageiro passageiroAtual = usuarioService.buscarPassageiroPorId(id);
+        Passageiro passageiroAtual = usuarioControl.buscarPassageiroPorId(id);
 
         if (passageiroAtual == null) {
             System.out.println("Passageiro nao encontrado.");
@@ -370,7 +371,7 @@ public class MenuAplicacao {
                 formasPagamento);
         passageiroAtualizado.setListaCorridas(passageiroAtual.getListaCorridas());
 
-        if (usuarioService.atualizar(passageiroAtualizado)) {
+        if (usuarioControl.atualizar(passageiroAtualizado)) {
             System.out.println("Passageiro atualizado com sucesso.");
         } else {
             System.out.println("Nao foi possivel atualizar o passageiro.");
@@ -382,14 +383,14 @@ public class MenuAplicacao {
         listarPassageiros();
 
         int id = lerInteiroPositivo("Informe o ID do passageiro: ");
-        Passageiro passageiro = usuarioService.buscarPassageiroPorId(id);
+        Passageiro passageiro = usuarioControl.buscarPassageiroPorId(id);
 
         if (passageiro == null) {
             System.out.println("Passageiro nao encontrado.");
             return;
         }
 
-        if (usuarioService.removerPorId(id)) {
+        if (usuarioControl.removerPorId(id)) {
             System.out.println("Passageiro removido com sucesso.");
         } else {
             System.out.println("Nao foi possivel remover o passageiro.");
@@ -412,7 +413,7 @@ public class MenuAplicacao {
         Motorista motorista = new Motorista(id, nome, telefone, email, endereco, regiao, cnh, veiculo,
                 disponibilidade);
 
-        if (usuarioService.cadastrar(motorista)) {
+        if (usuarioControl.cadastrar(motorista)) {
             System.out.println("Motorista cadastrado com sucesso.");
         } else {
             System.out.println("Nao foi possivel cadastrar o motorista.");
@@ -421,7 +422,7 @@ public class MenuAplicacao {
 
     private void listarMotoristas() {
         exibirCabecalho("LISTA DE MOTORISTAS");
-        ArrayList<Motorista> motoristas = usuarioService.listarMotoristas();
+        ArrayList<Motorista> motoristas = usuarioControl.listarMotoristas();
         if (motoristas.isEmpty()) {
             System.out.println("Nenhum motorista cadastrado.");
             return;
@@ -439,7 +440,7 @@ public class MenuAplicacao {
         listarMotoristas();
 
         int id = lerInteiroPositivo("Informe o ID do motorista: ");
-        Motorista motoristaAtual = usuarioService.buscarMotoristaPorId(id);
+        Motorista motoristaAtual = usuarioControl.buscarMotoristaPorId(id);
 
         if (motoristaAtual == null) {
             System.out.println("Motorista nao encontrado.");
@@ -460,7 +461,7 @@ public class MenuAplicacao {
         motoristaAtualizado.setAvaliacaoMedia(motoristaAtual.getAvaliacaoMedia());
         motoristaAtualizado.setListaCorridas(motoristaAtual.getListaCorridas());
 
-        if (usuarioService.atualizar(motoristaAtualizado)) {
+        if (usuarioControl.atualizar(motoristaAtualizado)) {
             System.out.println("Motorista atualizado com sucesso.");
         } else {
             System.out.println("Nao foi possivel atualizar o motorista.");
@@ -472,14 +473,14 @@ public class MenuAplicacao {
         listarMotoristas();
 
         int id = lerInteiroPositivo("Informe o ID do motorista: ");
-        Motorista motorista = usuarioService.buscarMotoristaPorId(id);
+        Motorista motorista = usuarioControl.buscarMotoristaPorId(id);
 
         if (motorista == null) {
             System.out.println("Motorista nao encontrado.");
             return;
         }
 
-        if (usuarioService.removerPorId(id)) {
+        if (usuarioControl.removerPorId(id)) {
             System.out.println("Motorista removido com sucesso.");
         } else {
             System.out.println("Nao foi possivel remover o motorista.");
@@ -489,7 +490,7 @@ public class MenuAplicacao {
     private void solicitarCorrida() {
         exibirCabecalho("SOLICITAR CORRIDA");
 
-        if (usuarioService.listarPassageiros().isEmpty()) {
+        if (usuarioControl.listarPassageiros().isEmpty()) {
             System.out.println("Cadastre pelo menos um passageiro antes de solicitar corridas.");
             return;
         }
@@ -497,7 +498,7 @@ public class MenuAplicacao {
         listarPassageiros();
         int idCorrida = lerNovoIdCorrida();
         int idPassageiro = lerInteiroPositivo("Informe o ID do passageiro: ");
-        Passageiro passageiro = usuarioService.buscarPassageiroPorId(idPassageiro);
+        Passageiro passageiro = usuarioControl.buscarPassageiroPorId(idPassageiro);
 
         if (passageiro == null) {
             System.out.println("Passageiro nao encontrado.");
@@ -511,7 +512,7 @@ public class MenuAplicacao {
 
         Corrida corrida = new Corrida(idCorrida, passageiro, origem, destino, data, horario);
 
-        if (corridaService.solicitar(corrida)) {
+        if (corridaControl.solicitar(corrida)) {
             System.out.println("Corrida solicitada com sucesso.");
         } else {
             System.out.println("Nao foi possivel solicitar a corrida.");
@@ -520,7 +521,7 @@ public class MenuAplicacao {
 
     private void listarCorridas() {
         exibirCabecalho("LISTA DE CORRIDAS");
-        ArrayList<Corrida> corridas = corridaService.listar();
+        ArrayList<Corrida> corridas = corridaControl.listar();
         if (corridas.isEmpty()) {
             System.out.println("Nenhuma corrida cadastrada.");
             return;
@@ -536,7 +537,7 @@ public class MenuAplicacao {
         listarCorridas();
 
         int id = lerInteiroPositivo("Informe o ID da corrida: ");
-        Corrida corrida = corridaService.buscarPorId(id);
+        Corrida corrida = corridaControl.buscarPorId(id);
 
         if (corrida == null) {
             System.out.println("Corrida nao encontrada.");
@@ -548,7 +549,7 @@ public class MenuAplicacao {
         String data = lerDataValida();
         String horario = lerHorarioValido();
 
-        if (corridaService.atualizarRota(id, origem, destino, data, horario)) {
+        if (corridaControl.atualizarRota(id, origem, destino, data, horario)) {
             System.out.println("Corrida atualizada com sucesso.");
         } else {
             System.out.println("Nao foi possivel atualizar a corrida.");
@@ -559,23 +560,23 @@ public class MenuAplicacao {
         exibirCabecalho("DESPACHAR CORRIDA");
         listarCorridas();
 
-        ArrayList<Motorista> motoristasDisponiveis = usuarioService.listarMotoristasDisponiveis();
+        ArrayList<Motorista> motoristasDisponiveis = usuarioControl.listarMotoristasDisponiveis();
         if (motoristasDisponiveis.isEmpty()) {
             System.out.println("Nao ha motoristas disponiveis no momento.");
             return;
         }
 
         int id = lerInteiroPositivo("Informe o ID da corrida: ");
-        Motorista motorista = corridaService.despacharCorrida(id, motoristasDisponiveis);
+        Motorista motorista = corridaControl.despacharCorrida(id, motoristasDisponiveis);
 
         if (motorista == null) {
             System.out.println("Nao foi possivel despachar a corrida. Verifique status e compatibilidade.");
             return;
         }
 
-        Corrida corrida = corridaService.buscarPorId(id);
+        Corrida corrida = corridaControl.buscarPorId(id);
         System.out.println("Corrida iniciada com motorista " + motorista.getNome() + ".");
-        System.out.println("Valor calculado: R$ " + corrida.getValor());
+        System.out.printf("Valor calculado: R$ %.2f%n", corrida.getValor());
     }
 
     private void finalizarCorrida() {
@@ -583,10 +584,10 @@ public class MenuAplicacao {
         listarCorridas();
 
         int id = lerInteiroPositivo("Informe o ID da corrida: ");
-        if (corridaService.finalizar(id)) {
+        if (corridaControl.finalizar(id)) {
             System.out.println("Corrida finalizada com sucesso.");
         } else {
-            System.out.println("Nao foi possivel finalizar a corrida.");
+            System.out.println("Nao foi possivel finalizar a corrida. A corrida precisa estar em andamento.");
         }
     }
 
@@ -595,7 +596,7 @@ public class MenuAplicacao {
         listarCorridas();
 
         int id = lerInteiroPositivo("Informe o ID da corrida: ");
-        if (corridaService.cancelar(id)) {
+        if (corridaControl.cancelar(id)) {
             System.out.println("Corrida cancelada com sucesso.");
         } else {
             System.out.println("Nao foi possivel cancelar a corrida.");
@@ -607,7 +608,7 @@ public class MenuAplicacao {
         listarCorridas();
 
         int id = lerInteiroPositivo("Informe o ID da corrida: ");
-        if (corridaService.removerPorId(id)) {
+        if (corridaControl.removerPorId(id)) {
             System.out.println("Corrida removida com sucesso.");
         } else {
             System.out.println("Nao foi possivel remover a corrida.");
@@ -619,14 +620,14 @@ public class MenuAplicacao {
         listarCorridas();
 
         int idCorrida = lerInteiroPositivo("Informe o ID da corrida finalizada: ");
-        Corrida corrida = corridaService.buscarPorId(idCorrida);
+        Corrida corrida = corridaControl.buscarPorId(idCorrida);
 
         if (corrida == null) {
             System.out.println("Corrida nao encontrada.");
             return;
         }
 
-        if (pagamentoService.buscarPorCorridaId(idCorrida) != null) {
+        if (pagamentoControl.buscarPorCorridaId(idCorrida) != null) {
             System.out.println("Essa corrida ja possui pagamento registrado.");
             return;
         }
@@ -635,16 +636,16 @@ public class MenuAplicacao {
         String metodoPagamento = lerMetodoPagamento();
         Pagamento pagamento = new Pagamento(idPagamento, corrida, corrida.getValor(), metodoPagamento);
 
-        if (pagamentoService.processarPagamento(pagamento)) {
+        if (pagamentoControl.processarPagamento(pagamento)) {
             System.out.println("Pagamento processado com sucesso.");
         } else {
-            System.out.println("Nao foi possivel processar o pagamento.");
+            System.out.println("Nao foi possivel processar o pagamento. Finalize uma corrida com valor calculado.");
         }
     }
 
     private void listarPagamentos() {
         exibirCabecalho("LISTA DE PAGAMENTOS");
-        ArrayList<Pagamento> pagamentos = pagamentoService.listar();
+        ArrayList<Pagamento> pagamentos = pagamentoControl.listar();
         if (pagamentos.isEmpty()) {
             System.out.println("Nenhum pagamento registrado.");
             return;
@@ -660,13 +661,13 @@ public class MenuAplicacao {
         listarPagamentos();
 
         int id = lerInteiroPositivo("Informe o ID do pagamento: ");
-        if (pagamentoService.buscarPorId(id) == null) {
+        if (pagamentoControl.buscarPorId(id) == null) {
             System.out.println("Pagamento nao encontrado.");
             return;
         }
 
         String metodoPagamento = lerMetodoPagamento();
-        if (pagamentoService.atualizarMetodoPagamento(id, metodoPagamento)) {
+        if (pagamentoControl.atualizarMetodoPagamento(id, metodoPagamento)) {
             System.out.println("Pagamento atualizado com sucesso.");
         } else {
             System.out.println("Nao foi possivel atualizar o pagamento.");
@@ -678,7 +679,7 @@ public class MenuAplicacao {
         listarPagamentos();
 
         int id = lerInteiroPositivo("Informe o ID do pagamento: ");
-        if (pagamentoService.removerPorId(id)) {
+        if (pagamentoControl.removerPorId(id)) {
             System.out.println("Pagamento removido com sucesso.");
         } else {
             System.out.println("Nao foi possivel remover o pagamento.");
@@ -690,14 +691,14 @@ public class MenuAplicacao {
         listarCorridas();
 
         int idCorrida = lerInteiroPositivo("Informe o ID da corrida finalizada: ");
-        Corrida corrida = corridaService.buscarPorId(idCorrida);
+        Corrida corrida = corridaControl.buscarPorId(idCorrida);
 
         if (corrida == null) {
             System.out.println("Corrida nao encontrada.");
             return;
         }
 
-        if (avaliacaoService.buscarPorCorridaId(idCorrida) != null) {
+        if (avaliacaoControl.buscarPorCorridaId(idCorrida) != null) {
             System.out.println("Essa corrida ja possui avaliacao registrada.");
             return;
         }
@@ -718,7 +719,7 @@ public class MenuAplicacao {
             avaliacao = corrida.getPassageiro().avaliarCorrida(idAvaliacao, corrida, nota, comentario);
         }
 
-        if (avaliacaoService.registrar(avaliacao)) {
+        if (avaliacaoControl.registrar(avaliacao)) {
             System.out.println("Avaliacao registrada com sucesso.");
         } else {
             System.out.println("Nao foi possivel registrar a avaliacao.");
@@ -727,7 +728,7 @@ public class MenuAplicacao {
 
     private void listarAvaliacoes() {
         exibirCabecalho("LISTA DE AVALIACOES");
-        ArrayList<Avaliacao> avaliacoes = avaliacaoService.listar();
+        ArrayList<Avaliacao> avaliacoes = avaliacaoControl.listar();
         if (avaliacoes.isEmpty()) {
             System.out.println("Nenhuma avaliacao registrada.");
             return;
@@ -743,7 +744,7 @@ public class MenuAplicacao {
         listarAvaliacoes();
 
         int id = lerInteiroPositivo("Informe o ID da avaliacao: ");
-        if (avaliacaoService.buscarPorId(id) == null) {
+        if (avaliacaoControl.buscarPorId(id) == null) {
             System.out.println("Avaliacao nao encontrada.");
             return;
         }
@@ -751,7 +752,7 @@ public class MenuAplicacao {
         int nota = lerNotaValida();
         String comentario = lerTextoOpcional("Novo comentario (opcional): ");
 
-        if (avaliacaoService.atualizarComentario(id, nota, comentario)) {
+        if (avaliacaoControl.atualizarComentario(id, nota, comentario)) {
             System.out.println("Avaliacao atualizada com sucesso.");
         } else {
             System.out.println("Nao foi possivel atualizar a avaliacao.");
@@ -763,7 +764,7 @@ public class MenuAplicacao {
         listarAvaliacoes();
 
         int id = lerInteiroPositivo("Informe o ID da avaliacao: ");
-        if (avaliacaoService.removerPorId(id)) {
+        if (avaliacaoControl.removerPorId(id)) {
             System.out.println("Avaliacao removida com sucesso.");
         } else {
             System.out.println("Nao foi possivel remover a avaliacao.");
@@ -772,7 +773,7 @@ public class MenuAplicacao {
 
     private void listarUsuarios() {
         exibirCabecalho("LISTA GERAL DE USUARIOS");
-        ArrayList<Usuario> usuarios = usuarioService.listar();
+        ArrayList<Usuario> usuarios = usuarioControl.listar();
         if (usuarios.isEmpty()) {
             System.out.println("Nenhum usuario cadastrado.");
             return;
@@ -792,9 +793,9 @@ public class MenuAplicacao {
         System.out.println("Modelagem POO: heranca em Usuario/Passageiro/Motorista e Veiculo/subclasses.");
         System.out.println("Polimorfismo: override em exibirPerfil, exibirDetalhes, calcularTarifa e toString.");
         System.out.println("Sobrecarga: construtores e metodos em Corrida, Motorista, Passageiro, Pagamento e Avaliacao.");
-        System.out.println("CRUD: usuarios, corridas, pagamentos e avaliacoes com ArrayList nos services.");
+        System.out.println("CRUD: usuarios, corridas, pagamentos e avaliacoes com ArrayList nos controles.");
         System.out.println("Validacoes: ID unico, email, telefone, CNH, placa, data, horario e nota.");
-        System.out.println("Comentario de codigo: metodos chave comentados em model, service e view.");
+        System.out.println("Comentario de codigo: metodos chave comentados em model, control e view.");
     }
 
     private void carregarDadosIniciais() {
@@ -813,8 +814,8 @@ public class MenuAplicacao {
                 new Van("Ducato", "BRA2E45", true, 6), true);
 
         ArrayList<String> formasPagamento = new ArrayList<>();
-        formasPagamento.add("Pix");
-        formasPagamento.add("Cartao");
+        formasPagamento.add(Pagamento.METODO_PIX);
+        formasPagamento.add(Pagamento.METODO_CARTAO);
 
         Passageiro ana = new Passageiro(3, "Ana Souza", "(11)999990003", "ana@email.com",
                 "Av. Central, 200", centro, "Cadeirante", formasPagamento);
@@ -827,7 +828,7 @@ public class MenuAplicacao {
         usuariosIniciais.add(ana);
         usuariosIniciais.add(joao);
 
-        usuarioService.cadastrar(usuariosIniciais);
+        usuarioControl.cadastrar(usuariosIniciais);
     }
 
     private Veiculo criarVeiculoPorEntrada() {
@@ -859,7 +860,7 @@ public class MenuAplicacao {
         String entrada = lerTextoOpcional("Formas de pagamento (separadas por virgula, enter para Pix): ");
 
         if (estaVazio(entrada)) {
-            formasPagamento.add("Pix");
+            formasPagamento.add(Pagamento.METODO_PIX);
             return formasPagamento;
         }
 
@@ -872,7 +873,7 @@ public class MenuAplicacao {
         }
 
         if (formasPagamento.isEmpty()) {
-            formasPagamento.add("Pix");
+            formasPagamento.add(Pagamento.METODO_PIX);
         }
 
         return formasPagamento;
@@ -887,57 +888,44 @@ public class MenuAplicacao {
         int opcao = lerInteiroNoIntervalo("Escolha o metodo: ", 1, 3);
         switch (opcao) {
             case 1:
-                return "Pix";
+                return Pagamento.METODO_PIX;
             case 2:
-                return "Cartao";
+                return Pagamento.METODO_CARTAO;
             case 3:
-                return "Dinheiro";
+                return Pagamento.METODO_DINHEIRO;
             default:
-                return "Pix";
+                return Pagamento.METODO_PIX;
         }
     }
 
     private int lerNovoIdUsuario() {
-        int id;
-        do {
-            id = lerInteiroPositivo("ID do usuario: ");
-            if (usuarioService.buscarPorId(id) != null) {
-                System.out.println("Ja existe um usuario com esse ID.");
-            }
-        } while (usuarioService.buscarPorId(id) != null);
-        return id;
+        return lerNovoId("ID do usuario: ", id -> usuarioControl.buscarPorId(id),
+                "Ja existe um usuario com esse ID.");
     }
 
     private int lerNovoIdCorrida() {
-        int id;
-        do {
-            id = lerInteiroPositivo("ID da corrida: ");
-            if (corridaService.buscarPorId(id) != null) {
-                System.out.println("Ja existe uma corrida com esse ID.");
-            }
-        } while (corridaService.buscarPorId(id) != null);
-        return id;
+        return lerNovoId("ID da corrida: ", id -> corridaControl.buscarPorId(id),
+                "Ja existe uma corrida com esse ID.");
     }
 
     private int lerNovoIdPagamento() {
-        int id;
-        do {
-            id = lerInteiroPositivo("ID do pagamento: ");
-            if (pagamentoService.buscarPorId(id) != null) {
-                System.out.println("Ja existe um pagamento com esse ID.");
-            }
-        } while (pagamentoService.buscarPorId(id) != null);
-        return id;
+        return lerNovoId("ID do pagamento: ", id -> pagamentoControl.buscarPorId(id),
+                "Ja existe um pagamento com esse ID.");
     }
 
     private int lerNovoIdAvaliacao() {
+        return lerNovoId("ID da avaliacao: ", id -> avaliacaoControl.buscarPorId(id),
+                "Ja existe uma avaliacao com esse ID.");
+    }
+
+    private int lerNovoId(String mensagem, IntFunction<?> buscarPorId, String mensagemDuplicado) {
         int id;
         do {
-            id = lerInteiroPositivo("ID da avaliacao: ");
-            if (avaliacaoService.buscarPorId(id) != null) {
-                System.out.println("Ja existe uma avaliacao com esse ID.");
+            id = lerInteiroPositivo(mensagem);
+            if (buscarPorId.apply(id) != null) {
+                System.out.println(mensagemDuplicado);
             }
-        } while (avaliacaoService.buscarPorId(id) != null);
+        } while (buscarPorId.apply(id) != null);
         return id;
     }
 

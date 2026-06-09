@@ -31,7 +31,7 @@ public class Motorista extends Usuario {
 
         // O motorista assume a corrida e passa a ficar indisponivel ate a finalizacao.
         corrida.setMotorista(this);
-        corrida.setStatus("ACEITA");
+        corrida.setStatus(Corrida.STATUS_ACEITA);
         if (!listaCorridas.contains(corrida)) {
             listaCorridas.add(corrida);
         }

@@ -1,4 +1,4 @@
-package service;
+package control;
 
 import java.util.ArrayList;
 
@@ -6,10 +6,10 @@ import model.Motorista;
 import model.Passageiro;
 import model.Usuario;
 
-public class UsuarioService {
-    private ArrayList<Usuario> usuarios;
+public class UsuarioControl {
+    private final ArrayList<Usuario> usuarios;
 
-    public UsuarioService() {
+    public UsuarioControl() {
         this.usuarios = new ArrayList<>();
     }
 
@@ -116,7 +116,7 @@ public class UsuarioService {
 
     @Override
     public String toString() {
-        return "UsuarioService{"
+        return "UsuarioControl{"
                 + "usuarios=" + usuarios
                 + '}';
     }
