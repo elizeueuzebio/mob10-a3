@@ -12,17 +12,32 @@ target/
 .vscode/
 .idea/
 *.iml
+*.code-workspace
 .classpath
 .project
 .settings/
 
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Tool caches and local dependency stores
+.gradle/
+.m2/
+
 # OS and temporary files
 tmp/
 temp/
+logs/
 *.tmp
 *.log
+*.bak
+*.swp
+*~
 .DS_Store
 Thumbs.db
+desktop.ini
 
 # JVM crash/replay files
 hs_err_pid*
